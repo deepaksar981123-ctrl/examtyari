@@ -1,0 +1,305 @@
+/* AUTOSPLIT: vocab-popup.css — extracted heuristically */
+
+/* Beautiful Word Popup Styles */
+.word-popup {
+    position: fixed;
+    inset: 0;
+    display: none;
+    z-index: 1000;
+}
+
+.word-popup.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-backdrop {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 182, 193, 0.3), rgba(147, 112, 219, 0.3));
+    backdrop-filter: blur(8px);
+}
+
+.popup-container {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    max-width: 800px;
+    width: 90%;
+    z-index: 2;
+    animation: popupSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.popup-speech-bubble {
+    background: white;
+    border-radius: 20px;
+    padding: 16px 24px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    position: relative;
+    min-width: 200px;
+    flex-shrink: 0;
+}
+
+.popup-speech-bubble::after {
+    content: '';
+    position: absolute;
+    right: -12px;
+    top: 20px;
+    width: 0;
+    height: 0;
+    border-left: 12px solid white;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+}
+
+.popup-word {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1a1a1a;
+    text-align: center;
+}
+
+.popup-content {
+    background: white;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-height: 300px;
+    max-height: 70vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 #f1f5f9;
+}
+
+.popup-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.popup-content::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+}
+
+.popup-content::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+.popup-content::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+.popup-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.popup-header span {
+    font-weight: 600;
+    color: #1a1a1a;
+    font-size: 16px;
+}
+
+.popup-header span:nth-child(2),
+.popup-header span:nth-child(4) {
+    color: #666;
+    font-weight: 400;
+}
+
+.popup-body {
+    display: flex;
+    flex-direction: column;
+    gap: 18px; /* Reduced from 20px */
+}
+
+.popup-pronunciation,
+.popup-hindi-meaning,
+.popup-english-meaning,
+.popup-synonyms,
+.popup-example,
+.popup-mnemonic {
+    padding: 18px; /* Reduced from 16px */
+    background: #f8f9fa;
+    border-radius: 12px;
+    border-left: 4px solid #007bff;
+}
+
+/* Part of Speech field */
+.popup-pos {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0; /* Removed as h3 label will handle spacing */
+    font-weight: 600;
+}
+
+.popup-pos::before {
+    /* content: 'Part of Speech'; */ /* Removed as h3 label is now used */
+    display: none; /* Hide the pseudo-element */
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--badge-bg);
+    color: var(--badge-text);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.popup-pronunciation {
+    background: #e3f2fd;
+    border-left-color: #2196f3;
+}
+
+.popup-hindi-meaning {
+    background: #f3e5f5;
+    border-left-color: #9c27b0;
+}
+
+.popup-english-meaning {
+    background: #e8f5e8;
+    border-left-color: #4caf50;
+}
+
+.popup-example {
+    background: #fff3e0;
+    border-left-color: #ff9800;
+}
+
+.popup-synonyms {
+    background: #f0f9ff;
+    border-left-color: #0ea5e9;
+}
+
+.popup-mnemonic {
+    background: #fdf4ff;
+    border-left-color: #a855f7;
+}
+
+.popup-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--muted);
+    margin-top: 1px; /* Adjusted for better spacing with new gap */
+    margin-bottom: 1px; /* Further reduced from 4px */
+}
+
+.popup-pronunciation::before,
+.popup-hindi-meaning::before,
+.popup-english-meaning::before,
+.popup-synonyms::before,
+.popup-example::before,
+.popup-mnemonic::before {
+    /* content: attr(data-label); */ /* Removed as h3 labels are now used */
+    display: none; /* Hide the pseudo-element to allow h3 labels to show */
+    font-size: 12px;
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.popup-close {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #ff4757;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(255, 71, 87, 0.3);
+    transition: all 0.2s ease;
+}
+
+.popup-close:hover {
+    background: #ff3742;
+    transform: scale(1.1);
+}
+
+.popup-delete {
+    position: absolute;
+    top: -15px; /* Adjust as needed */
+    left: -15px; /* Adjust as needed */
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #dc2626; /* Red background */
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(220, 38, 38, 0.3);
+    transition: all 0.2s ease;
+    z-index: 10; /* Ensure it's above other elements */
+}
+
+.popup-delete:hover {
+    background: #b91c1c;
+    transform: scale(1.1);
+}
+
+.popup-edit {
+    position: absolute;
+    top: -15px;
+    right: 24px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #0ea5e9;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(14, 165, 233, 0.35);
+    transition: all 0.2s ease;
+}
+
+.popup-edit:hover { background: #0284c7; transform: scale(1.1); }
+
+/* Responsive design for popup */
+@media (max-width: 768px) {
+    .popup-container {
+        flex-direction: column;
+        gap: 15px;
+        width: 95%;
+    }
+
+.popup-speech-bubble {
+        min-width: auto;
+        width: 100%;
+    }
+
+.popup-speech-bubble::after {
+        display: none;
+    }
+
+.popup-content {
+        min-height: auto;
+    }
+
+.popup-header {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+}
+

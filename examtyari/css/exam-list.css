@@ -1,0 +1,136 @@
+/* AUTOSPLIT: exam-list.css — extracted heuristically */
+
+/* Exam PDFs Section Modern Colorful Styles */
+#exam-pdfs {
+    background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%);
+    min-height: 100vh;
+    padding-bottom: 60px;
+    border-radius: 0 0 32px 32px;
+    box-shadow: 0 8px 32px rgba(102, 126, 234, 0.08);
+}
+
+#exam-pdfs h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: #3b3663;
+    margin-top: 40px;
+    margin-bottom: 32px;
+    text-align: left;
+    text-shadow: 0 2px 8px rgba(102, 126, 234, 0.08);
+}
+
+.pdf-categories {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.pdf-category-btn {
+    background: linear-gradient(90deg, #36d1c4 0%, #5b86e5 100%);
+    color: #fff;
+    border: none;
+    padding: 22px 0;
+    border-radius: 32px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.3rem;
+    width: 320px;
+    margin: 0 auto;
+    box-shadow: 0 4px 24px rgba(91, 134, 229, 0.18);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+    border: 2px solid transparent;
+    position: relative;
+}
+
+.pdf-category-btn.active {
+    background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+    color: #fff;
+    box-shadow: 0 8px 32px rgba(240, 147, 251, 0.18);
+    border: 2px solid #f093fb;
+}
+
+.pdf-category-btn:hover {
+    transform: scale(1.04) translateY(-2px);
+    box-shadow: 0 12px 40px rgba(91, 134, 229, 0.22);
+    border: 2px solid #5b86e5;
+}
+
+@media (max-width: 600px) {
+    #exam-pdfs h2 {
+        font-size: 2rem;
+        margin-top: 24px;
+        margin-bottom: 20px;
+    }
+    .pdf-category-btn {
+        width: 90vw;
+        font-size: 1.1rem;
+        padding: 16px 0;
+    }
+    .pdf-categories {
+        gap: 16px;
+    }
+}
+
+/* Exam PDFs Feature Start */
+.pdf-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* पहले 280px था */
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.pdf-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(2, 6, 23, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.pdf-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.pdf-item:hover::before {
+    transform: scaleX(1);
+}
+
+.pdf-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(2, 6, 23, 0.1);
+}
+
+.pdf-item-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+}
+
+.pdf-item-subject {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 12px;
+}
+
+.pdf-item-icon {
+    font-size: 24px;
+    margin-bottom: 12px;
+}
+
