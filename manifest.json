@@ -1,0 +1,41 @@
+{
+  "name": "Exam Tyari - Learn & Quiz",
+  "short_name": "Exam Tyari",
+  "description": "Exam Tyari - Learn English vocabulary with interactive quizzes and progress tracking",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#0ea5e9",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["education", "learning", "vocabulary"],
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Quick Quiz",
+      "short_name": "Quiz",
+      "description": "Start a quick vocabulary quiz",
+      "url": "/?view=quiz"
+    },
+    {
+      "name": "Search Words",
+      "short_name": "Search",
+      "description": "Search vocabulary database",
+      "url": "/?view=search"
+    }
+  ]
+}

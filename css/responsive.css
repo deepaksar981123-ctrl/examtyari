@@ -1,0 +1,24 @@
+/* AUTOSPLIT: responsive.css — extracted heuristically */
+
+@keyframes pulseGlow {      
+    0%,100% { filter: brightness(1); }
+}       
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes itemIn {
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@media (max-width: 640px) {
+    .header-inner { flex-direction: column; align-items: flex-start; gap: 8px; }
+}
+@keyframes popupSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+    }
+}
+@media (max-width: 640px) {
+    .wotd-card { border-radius: 20px; padding: 18px; }
+}
+@keyframes shimmer {
+    0% { background-position: 0% 0; }
+}       

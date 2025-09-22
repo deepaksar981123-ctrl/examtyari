@@ -1,0 +1,618 @@
+/* AUTOSPLIT: home.css — extracted heuristically */
+
+.wotd-word { font-size: 24px; font-weight: 700; }
+
+.wotd-meaning { margin-top: 6px; color: var(--muted); }
+
+.home-buttons {
+    display: flex;
+    gap: 24px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Enhanced Button Styles */
+.vocabulary-btn {
+    background: linear-gradient(135deg, #22d3ee 0%, #3b82f6 50%, #8b5cf6 100%) !important;
+    border: none !important;
+    border-radius: 20px !important;
+    padding: 24px 32px !important;
+    color: white !important;
+    font-weight: 800 !important;
+    font-size: 16px !important;
+    cursor: pointer !important;
+    box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4) !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    animation: pulseGlow 3s ease-in-out infinite !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 16px !important;
+    min-width: 250px !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.vocabulary-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
+}
+
+.vocabulary-btn:hover::before {
+    left: 100%;
+}
+
+.vocabulary-btn:hover {
+    transform: translateY(-4px) scale(1.02) !important;
+    box-shadow: 0 20px 45px rgba(59, 130, 246, 0.5) !important;
+}
+
+.exam-pdfs-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%) !important;
+    border: none !important;
+    border-radius: 20px !important;
+    padding: 24px 32px !important;
+    color: white !important;
+    font-weight: 800 !important;
+    font-size: 16px !important;
+    cursor: pointer !important;
+    box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4) !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    animation: pulseGlow 3s ease-in-out infinite !important;
+    animation-delay: 1.5s !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 16px !important;
+    min-width: 250px !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.exam-pdfs-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
+}
+
+.exam-pdfs-btn:hover::before {
+    left: 100%;
+}
+
+.exam-pdfs-btn:hover {
+    transform: translateY(-4px) scale(1.02) !important;
+    box-shadow: 0 20px 45px rgba(102, 126, 234, 0.5) !important;
+}
+
+/* Button Content Styling */
+.btn-icon {
+    font-size: 32px;
+    flex-shrink: 0;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.btn-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+}
+
+.btn-title {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 4px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.btn-subtitle {
+    font-size: 13px;
+    opacity: 0.9;
+    font-weight: 500;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.btn-arrow {
+    font-size: 24px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.home-cta:hover .btn-arrow {
+    transform: translateX(8px);
+}
+
+#home-cta.home-cta {
+    padding: 14px 20px;
+    border: none;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #22d3ee, #3b82f6, #8b5cf6);
+    color: white;
+    font-weight: 800;
+    letter-spacing: .5px;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(59,130,246,.35);
+    transition: transform .15s ease, box-shadow .2s ease;
+    animation: pulseGlow 2.2s ease-in-out infinite;
+}
+
+#home-cta.home-cta:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(59,130,246,.4);}
+
+.exam-pdfs-btn {
+    padding: 14px 20px;
+    border: none;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    font-weight: 800;
+    letter-spacing: .5px;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, .35);
+    transition: transform .15s ease, box-shadow .2s ease;
+    animation: pulseGlow 2.2s ease-in-out infinite;
+}
+
+.exam-pdfs-btn:hover { 
+    transform: translateY(-2px); 
+    box-shadow: 0 14px 36px rgba(102, 126, 234, .4);
+}
+
+#wotd {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Disable old WOTD hover overlay */
+#wotd::before { content: none !important; opacity: 0 !important; display: none !important; }
+
+#wotd:hover::before { content: none !important; opacity: 0 !important; display: none !important; }
+
+#wotd:hover::before {
+    opacity: 1;
+}
+
+.wotd-word {
+    font-size: 32px;
+    font-weight: 800;
+}
+
+.wotd-meaning { margin-top: 8px; color: var(--muted); font-size: 16px; }
+
+.wotd-word { font-size: 28px; }
+
+/* About Section Styles */
+.about-section {
+    margin-top: 24px;
+    padding: 32px;
+    background: linear-gradient(135deg, var(--card) 0%, var(--surface-secondary) 100%);
+    border: 2px solid var(--border);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(14, 165, 233, 0.05) 0%, transparent 70%);
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(-10px, -10px) rotate(1deg); }
+}
+
+.about-header {
+    text-align: center;
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+}
+
+.about-header h3 {
+    margin: 0 0 8px 0;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text-primary);
+    background: linear-gradient(135deg, #0ea5e9, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.about-tagline {
+    font-size: 18px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    margin: 0;
+    opacity: 0.9;
+}
+
+.about-description {
+    text-align: center;
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+}
+
+.about-description p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 500;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+    margin: 32px 0;
+    position: relative;
+    z-index: 1;
+}
+
+.feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 24px;
+    border-radius: 16px;
+    background: var(--card);
+    border: 2px solid var(--border);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #0ea5e9, #8b5cf6, #ec4899);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border-color: var(--primary);
+}
+
+.feature-item:hover::before {
+    transform: scaleX(1);
+}
+
+.feature-icon-wrapper {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--primary), #8b5cf6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 8px 20px rgba(14, 165, 233, 0.3);
+    position: relative;
+}
+
+.feature-icon {
+    font-size: 28px;
+    filter: brightness(0) invert(1);
+}
+
+.feature-content {
+    flex: 1;
+    position: relative;
+}
+
+.feature-content h4 {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.feature-content p {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.feature-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #0ea5e9, #8b5cf6);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Stats Section */
+.stats-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 16px;
+    margin-top: 32px;
+    padding: 24px;
+    background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+    border-radius: 16px;
+    position: relative;
+    z-index: 1;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 16px;
+    border-radius: 12px;
+    background: var(--card);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.stat-number {
+    font-size: 24px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #0ea5e9, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 4px;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Settings Section Styles - Now separate view */
+#settings .settings-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+#settings .setting-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    border-radius: 12px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 16px rgba(2,6,23,0.05);
+    transition: all 0.2s ease;
+}
+
+#settings .setting-item:hover {
+    background: var(--surface-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(2,6,23,0.1);
+}
+
+#settings .setting-info h4 {
+    margin: 0 0 4px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+#settings .setting-info p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+#settings .setting-toggle {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    background: var(--primary);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 50px;
+}
+
+#settings .setting-toggle:hover {
+    background: var(--primary-hover);
+    transform: scale(1.05);
+}
+
+#settings .setting-toggle.disabled {
+    background: var(--text-muted);
+    opacity: 0.6;
+}
+
+#settings .settings-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+}
+
+#settings .settings-btn {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+#settings .settings-btn.primary {
+    background: var(--primary);
+    color: white;
+}
+
+#settings .settings-btn.primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+#settings .settings-btn.danger {
+    background: #ef4444;
+    color: white;
+}
+
+#settings .settings-btn.danger:hover {
+    background: #dc2626;
+    transform: translateY(-1px);
+}
+
+#settings .settings-btn.warning {
+    background: #f59e0b;
+    color: white;
+}
+
+#settings .settings-btn.warning:hover {
+    background: #d97706;
+    transform: translateY(-1px);
+}
+
+/* New settings controls */
+#settings .setting-select {
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--card);
+    color: var(--text-primary);
+    font-size: 14px;
+    cursor: pointer;
+    min-width: 120px;
+}
+
+#settings .setting-select:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+#settings .setting-input {
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--card);
+    color: var(--text-primary);
+    font-size: 14px;
+    min-width: 120px;
+}
+
+#settings .setting-input:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    border-color: var(--primary);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .home-buttons {
+        flex-direction: column;
+        gap: 16px;
+        align-items: stretch;
+    }
+    
+    .vocabulary-btn,
+    .exam-pdfs-btn {
+        min-width: 100% !important;
+        padding: 20px 24px !important;
+        justify-content: center !important;
+    }
+    
+    .btn-title {
+        font-size: 18px;
+    }
+    
+    .btn-subtitle {
+        font-size: 12px;
+    }
+    
+    .btn-icon {
+        font-size: 28px;
+    }
+    
+    .about-section {
+        padding: 24px 16px;
+        margin-top: 16px;
+    }
+    
+    .about-header h3 {
+        font-size: 24px;
+    }
+    
+    .about-tagline {
+        font-size: 16px;
+    }
+    
+    .feature-item {
+        padding: 20px;
+    }
+    
+    .feature-icon-wrapper {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .feature-icon {
+        font-size: 24px;
+    }
+    
+    .stats-section {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        padding: 20px;
+    }
+    
+    .stat-number {
+        font-size: 20px;
+    }
+}
+
+/* Dark mode adjustments will be handled by global CSS variables */
+
