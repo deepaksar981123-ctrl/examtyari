@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Exam Tyari</title>
     
     <!-- PWA Meta Tags -->
@@ -186,13 +186,25 @@
         </section>
 
 <section id="search" class="view">
-            <h2>Search Vocabulary</h2>
-            <div style="display: flex; gap: 10px; margin-bottom: 15px; align-items: center;">
-                <input id="search-input" type="text" placeholder="Type to search words, meanings, or synonyms..." style="flex: 1;" />
-                <button id="refresh-words" class="nav-btn" style="white-space: nowrap;" title="Refresh words from Google Sheet">🔄 Refresh</button>
+            <div class="search-header">
+                <h2>🔍 Search Vocabulary</h2>
+                <p class="search-subtitle">Find words, meanings, and synonyms instantly</p>
             </div>
-            <div id="word-count-info" style="margin-bottom: 10px; font-size: 14px; color: var(--text-secondary);">Loading words...</div>
-            <div id="search-results" class="list"></div>
+            
+            <div class="search-container">
+                <div class="search-input-wrapper">
+                    <div class="search-icon">🔍</div>
+                    <input id="search-input" type="text" placeholder="Type to search words, meanings, or synonyms..." />
+                    <button class="search-clear-btn" id="search-clear" style="display: none;">✕</button>
+                </div>
+                <button id="refresh-words" class="refresh-btn" title="Refresh words from Google Sheet">
+                    <span class="refresh-icon">🔄</span>
+                    <span class="refresh-text">Refresh</span>
+                </button>
+            </div>
+            
+            <div id="word-count-info" class="word-count-display">Loading words...</div>
+            <div id="search-results" class="search-results-grid"></div>
         </section>
 
         <section id="vocabulary" class="view">
@@ -549,7 +561,7 @@
             <button class="popup-close" data-close-popup aria-label="Close">✖</button>
             <button class="popup-favorite" id="popup-favorite" aria-label="Add to Favorites">⭐</button>
             <button class="popup-delete" id="popup-delete" aria-label="Delete Word">🗑️</button>
-            <button class="popup-edit" id="popup-edit" aria-label="Edit Word" style="display: none;">✎</button>
+            <button class="popup-edit" id="popup-edit" aria-label="Edit Word">✎</button>
         </div>
     </div>
     <!-- PDF Modal removed - PDFs now open inline -->
