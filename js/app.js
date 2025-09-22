@@ -185,6 +185,7 @@
         const input = document.getElementById('search-input');
         const results = document.getElementById('search-results');
         const wordCountInfo = document.getElementById('word-count-info');
+        const clearBtn = document.getElementById('search-clear');
         
         // Update word count display
         if (wordCountInfo) {
@@ -196,67 +197,115 @@
         }
         
         const render = items => {
+            if (!results) return;
             results.innerHTML = '';
             if (items.length === 0) {
                 const query = input ? input.value.trim() : '';
                 if (query) {
-                    results.innerHTML = '<div style="text-align: center; padding: 20px; color: var(--text-secondary);">No words found matching "' + query + '". Try a different search term.</div>';
+                    results.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; padding: 40px 20px; color: var(--text-secondary);"><div style="font-size: 48px; margin-bottom: 16px; opacity: 0.5;">🔍</div><h3 style="margin: 0 0 8px 0; color: var(--text-primary);">No results found</h3><p style="margin: 0; font-size: 14px;">No words found matching "' + query + '". Try a different search term.</p></div>';
                 } else {
-                    results.innerHTML = '<div style="text-align: center; padding: 20px; color: var(--text-secondary);">Start typing to search words...</div>';
+                    results.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; padding: 40px 20px; color: var(--text-secondary);"><div style="font-size: 48px; margin-bottom: 16px; opacity: 0.5;">📚</div><h3 style="margin: 0 0 8px 0; color: var(--text-primary);">Start your search</h3><p style="margin: 0; font-size: 14px;">Type in the search box to find words, meanings, or synonyms.</p></div>';
                 }
                 return;
             }
             items.slice(0, 50).forEach((w, i) => {
                 const div = document.createElement('div');
-                div.className = 'list-item';
+                div.className = 'search-result-card';
                 const status = getSyncStatus(w.word);
+                const isFavorited = typeof isWordFavorited === 'function' ? isWordFavorited(w.word) : false;
+                
                 div.innerHTML = `
-                    <div class="word-header">
-                        <div class="word">${w.word}</div>
-                        <span class="badge">${w.pos || ''}</span>
-                        <span class="sync ${status}">${status === 'synced' ? '✅' : '🔄'}</span>
+                    <div class="result-word">
+                        ${w.word}
+                        ${w.pos ? `<span class="result-pos">${w.pos}</span>` : ''}
+                    </div>
+                    <div class="result-meaning">${(w.meaning || '').substring(0, 100)}${(w.meaning || '').length > 100 ? '...' : ''}</div>
+                    <div class="result-meta">
+                        <div class="result-sync ${status}">
+                            ${status === 'synced' ? '✅ Synced' : '🔄 Pending'}
+                        </div>
+                        <button class="result-favorite ${isFavorited ? 'favorited' : ''}" data-word="${w.word}" title="${isFavorited ? 'Remove from favorites' : 'Add to favorites'}">
+                            ⭐
+                        </button>
                     </div>
                 `;
-                div.addEventListener('click', () => showWordPopup(w));
+                
+                div.addEventListener('click', (e) => {
+                    if (!e.target.closest('.result-favorite')) {
+                        showWordPopup(w);
+                    }
+                });
+                
                 results.appendChild(div);
             });
+            
+            // Add favorite button handlers
+            const favoriteButtons = results.querySelectorAll('.result-favorite');
+            favoriteButtons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const wordToToggle = btn.dataset.word;
+                    const word = words.find(w => w.word === wordToToggle);
+                    if (word) {
+                        const isFavorited = typeof isWordFavorited === 'function' ? isWordFavorited(word.word) : false;
+                        
+                        if (isFavorited) {
+                            if (typeof removeFromFavorites === 'function') removeFromFavorites(word.word);
+                            btn.classList.remove('favorited');
+                            btn.title = 'Add to favorites';
+                        } else {
+                            if (typeof addToFavorites === 'function') addToFavorites(word);
+                            btn.classList.add('favorited');
+                            btn.title = 'Remove from favorites';
+                        }
+                    }
+                });
+            });
         };
-        // Initially show search prompt instead of all words
-        if (input) {
-            results.innerHTML = '<div style="text-align: center; padding: 20px; color: var(--text-secondary);">Start typing to search words...</div>';
+        
+        // Initially show search prompt
+        if (results) {
+            render([]);
         }
 
         if (input) {
-            // Add focus event to show all words when user focuses on search
-            input.addEventListener('focus', () => {
-                if (!input.value.trim()) {
-                    render(words.slice(0, 50)); // Show first 50 words
-                }
-            });
+            // Clear button functionality
+            if (clearBtn) {
+                clearBtn.addEventListener('click', () => {
+                    input.value = '';
+                    clearBtn.style.display = 'none';
+                    render([]);
+                    input.focus();
+                });
+            }
             
-            // Add blur event to hide results when unfocused and empty
-            input.addEventListener('blur', () => {
-                if (!input.value.trim()) {
-                    setTimeout(() => {
-                        if (!input.value.trim()) {
-                            results.innerHTML = '<div style="text-align: center; padding: 20px; color: var(--text-secondary);">Start typing to search words...</div>';
-                        }
-                    }, 100);
-                }
-            });
-            
+            // Real-time search as per user preference
             input.addEventListener('input', () => {
                 const q = input.value.trim().toLowerCase();
+                
+                // Show/hide clear button
+                if (clearBtn) {
+                    clearBtn.style.display = q ? 'block' : 'none';
+                }
+                
                 if (!q) {
-                    results.innerHTML = '<div style="text-align: center; padding: 20px; color: var(--text-secondary);">Start typing to search words...</div>';
+                    render([]);
                     return;
                 }
+                
                 const filtered = words.filter(w =>
                     (w.word && w.word.toLowerCase().includes(q)) ||
                     (w.meaning && w.meaning.toLowerCase().includes(q)) ||
                     (Array.isArray(w.synonyms) && w.synonyms.some(s => s.toLowerCase().includes(q)))
                 );
                 render(filtered);
+            });
+            
+            // Focus event to improve UX
+            input.addEventListener('focus', () => {
+                if (!input.value.trim()) {
+                    render([]);
+                }
             });
         }
 
@@ -496,7 +545,44 @@
         }
     }
 
-    // Delete word functionality
+    // Edit word functionality
+    function editWord(wordData) {
+        // Check admin mode before allowing edit
+        if (!isAdminMode()) {
+            toast('Edit function requires Admin Mode', 'error');
+            return;
+        }
+        
+        // Set editing mode
+        window._editingWord = wordData.word;
+        
+        // Populate form with current data
+        const wordForm = document.getElementById('word-form');
+        if (wordForm) {
+            document.getElementById('new-word').value = wordData.word || '';
+            document.getElementById('new-pronunciation').value = wordData.pronunciation || '';
+            document.getElementById('new-hindi-meaning').value = wordData.hindiMeaning || '';
+            document.getElementById('new-english-meaning').value = wordData.meaning || '';
+            document.getElementById('new-example').value = wordData.example || '';
+            document.getElementById('new-pos').value = wordData.pos || '';
+            document.getElementById('new-synonyms').value = Array.isArray(wordData.synonyms) ? wordData.synonyms.join(', ') : (wordData.synonyms || '');
+            document.getElementById('new-mnemonic').value = wordData.mnemonic || '';
+            
+            // Change submit button text
+            const submitBtn = wordForm.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.textContent = 'Update Word';
+            }
+            
+            // Navigate to add-word page
+            showView('add-word');
+            
+            // Close the popup
+            closeWordPopup();
+            
+            toast(`Editing word: ${wordData.word}`, 'info');
+        }
+    }
     async function deleteWord(wordToDelete) {
         // Check admin mode before allowing delete
         if (!isAdminMode()) {
@@ -607,6 +693,15 @@
             popupDelete.addEventListener('click', () => {
                 if (window._currentWordData && window._currentWordData.word) {
                     deleteWord(window._currentWordData.word);
+                }
+            });
+        }
+        
+        const popupEdit = document.getElementById('popup-edit');
+        if (popupEdit) {
+            popupEdit.addEventListener('click', () => {
+                if (window._currentWordData && window._currentWordData.word) {
+                    editWord(window._currentWordData);
                 }
             });
         }
@@ -818,7 +913,13 @@
                     showView('vocabulary');  // Navigate to vocabulary page instead of search
                 }, 2000);  // 2-second delay as per memory requirement
             }
+            
+            // Reset form and button text
             wordForm.reset();
+            const submitBtn = wordForm.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.textContent = 'Add Word';
+            }
         });
     }
 
