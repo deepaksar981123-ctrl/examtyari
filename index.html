@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exam Tyari</title>
+    
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0ea5e9">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Vocabulary">
+    <meta name="description" content="Exam Tyari - Learn English vocabulary with interactive quizzes and progress tracking">
+    <meta name="keywords" content="exam tyari, english, vocabulary, quiz, learning, education, words">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Exam Tyari - Learn & Quiz">
+    <meta property="og:description" content="Learn English vocabulary with interactive quizzes and progress tracking">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:site_name" content="Exam Tyari">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Exam Tyari - Learn & Quiz">
+    <meta name="twitter:description" content="Learn English vocabulary with interactive quizzes and progress tracking">
+    
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/vocab-add.css">
+  <link rel="stylesheet" href="css/vocab-list.css">
+  <link rel="stylesheet" href="css/vocab-popup.css">
+  <link rel="stylesheet" href="css/exam-list.css">
+  <link rel="stylesheet" href="css/exam-modal.css">
+  <link rel="stylesheet" href="css/quiz.css">
+  <link rel="stylesheet" href="css/settings-modal.css">
+  <link rel="stylesheet" href="css/responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <h1>Exam Tyari</h1>
+            <nav class="nav">
+                <button class="nav-btn" data-target="home">Home</button>
+                <button class="nav-btn" data-target="search">Search</button>
+                <button class="nav-btn" data-target="vocabulary" id="nav-vocab">Vocabulary</button>
+                <button class="nav-btn" data-target="favorites">Favorites</button>
+                <button class="nav-btn" data-target="quiz">Quiz</button>
+                <button class="nav-btn" data-target="add-word">Add Word</button>
+                <button class="nav-btn" id="exam-pdfs-btn" data-target="exam-pdfs">Exam PDFs</button>
+                <button class="nav-btn" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+                <button class="nav-btn" id="settings-btn" aria-label="Open settings">⚙️</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="home" class="view active">
+            <h2>Word of the Day</h2>
+            <div id="wotd" class="card wotd-card">
+                <div class="wotd-header">
+                    <div class="wotd-word" id="wotd-word">—</div>
+                    <button id="wotd-listen" class="wotd-listen" aria-label="Listen">🔊 Listen</button>
+                </div>
+                <div class="wotd-meaning" id="wotd-meaning">—</div>
+                <div class="wotd-hindi" id="wotd-hindi">—</div>
+                <div class="wotd-synonyms" id="wotd-synonyms">—</div>
+                <div class="wotd-example" id="wotd-example">—</div>
+            </div>
+            <div class="home-buttons">
+                <button id="home-cta" class="home-cta vocabulary-btn" aria-label="Open vocabulary">
+                    <div class="btn-icon">📚</div>
+                    <div class="btn-content">
+                        <div class="btn-title">Vocabulary</div>
+                        <div class="btn-subtitle">Learn & Search Words</div>
+                    </div>
+                    <div class="btn-arrow">→</div>
+                </button>
+                <button id="home-exam-pdfs" class="home-cta exam-pdfs-btn" aria-label="Open Exam PDFs">
+                    <div class="btn-icon">📄</div>
+                    <div class="btn-content">
+                        <div class="btn-title">Exam PDFs</div>
+                        <div class="btn-subtitle">Study Materials</div>
+                    </div>
+                    <div class="btn-arrow">→</div>
+                </button>
+            </div>
+            
+            <!-- About Section -->
+            <div class="about-section card">
+                <div class="about-header">
+                    <h3>🚀 About Exam Tyari</h3>
+                    <p class="about-tagline">Your Ultimate English Vocabulary Companion</p>
+                </div>
+                
+                <div class="about-description">
+                    <p>Master English vocabulary with our comprehensive learning platform designed specifically for exam preparation. From daily word challenges to interactive quizzes, we've got everything you need to excel in your English language goals.</p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon-wrapper">
+                            <span class="feature-icon">📚</span>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Word of the Day</h4>
+                            <p>Discover a new word daily with pronunciation, Hindi meaning, examples, and memory tricks</p>
+                            <span class="feature-badge">Daily</span>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon-wrapper">
+                            <span class="feature-icon">🔍</span>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Smart Search</h4>
+                            <p>Lightning-fast search through thousands of words with meanings, synonyms, and examples</p>
+                            <span class="feature-badge">Instant</span>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon-wrapper">
+                            <span class="feature-icon">⭐</span>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Favorites System</h4>
+                            <p>Save important words for focused learning and quick revision before exams</p>
+                            <span class="feature-badge">Personal</span>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon-wrapper">
+                            <span class="feature-icon">🎯</span>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Interactive Quiz</h4>
+                            <p>Test your knowledge with multiple difficulty levels and track your progress</p>
+                            <span class="feature-badge">Adaptive</span>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon-wrapper">
+                            <span class="feature-icon">📄</span>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Exam PDFs</h4>
+                            <p>Access curated study materials for competitive exams like SSC, BANK, UPSC</p>
+                            <span class="feature-badge">Premium</span>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon-wrapper">
+                            <span class="feature-icon">🔊</span>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Audio Pronunciation</h4>
+                            <p>Perfect your pronunciation with native English audio for Word of the Day</p>
+                            <span class="feature-badge">Audio</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stats-section">
+                    <div class="stat-item">
+                        <div class="stat-number">10,000+</div>
+                        <div class="stat-label">Words</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Categories</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Available</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Free</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<section id="search" class="view">
+            <h2>Search Vocabulary</h2>
+            <div style="display: flex; gap: 10px; margin-bottom: 15px; align-items: center;">
+                <input id="search-input" type="text" placeholder="Type to search words, meanings, or synonyms..." style="flex: 1;" />
+                <button id="refresh-words" class="nav-btn" style="white-space: nowrap;" title="Refresh words from Google Sheet">🔄 Refresh</button>
+            </div>
+            <div id="word-count-info" style="margin-bottom: 10px; font-size: 14px; color: var(--text-secondary);">Loading words...</div>
+            <div id="search-results" class="list"></div>
+        </section>
+
+        <section id="vocabulary" class="view">
+            <div class="vocabulary-header">
+                <button id="vocab-back-btn" class="back-button">
+                    <span class="back-icon">←</span>
+                    <span class="back-text">Back to Home</span>
+                </button>
+                <div class="vocab-title">
+                    <h2>📚 My Vocabulary Collection</h2>
+                    <p class="vocab-subtitle">Explore and master your word library</p>
+                </div>
+                <div id="vocab-count-info" class="vocab-stats">Loading words...</div>
+            </div>
+            
+            <div class="vocabulary-categories">
+                <button class="vocab-category-btn active" data-filter="all">All Words</button>
+                <button class="vocab-category-btn" data-filter="noun">Nouns</button>
+                <button class="vocab-category-btn" data-filter="verb">Verbs</button>
+                <button class="vocab-category-btn" data-filter="adjective">Adjectives</button>
+                <button class="vocab-category-btn" data-filter="recent">Recently Added</button>
+            </div>
+            
+            <div id="vocabulary-results" class="vocabulary-grid"></div>
+        </section>
+
+        <section id="favorites" class="view">
+            <h2>⭐ Favorite Words</h2>
+            <div id="favorites-count" style="margin-bottom: 15px; font-size: 14px; color: var(--text-secondary);">0 favorite words</div>
+            <div id="favorites-results" class="list">
+                <div style="text-align: center; padding: 40px; color: var(--text-secondary);">
+                    <p>No favorite words yet!</p>
+                    <p>Click the ⭐ icon on any word to add it to favorites.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz" class="view">
+            <div id="quiz-home" class="quiz-screen active">
+                <h2>📚 Vocabulary Quiz</h2>
+                
+                <div class="quiz-stats">
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-words">0</div>
+                        <div class="stat-label">Available Words</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="quiz-score">0</div>
+                        <div class="stat-label">Best Score</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="quizzes-taken">0</div>
+                        <div class="stat-label">Quizzes Taken</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-options">
+                    <div class="quiz-option-card">
+                        <h3>🎯 Quick Quiz</h3>
+                        <p>5 random questions</p>
+                        <button class="quiz-start-btn" data-questions="5">Start Quick Quiz</button>
+                    </div>
+                    <div class="quiz-option-card">
+                        <h3>🔥 Challenge Mode</h3>
+                        <p>10 challenging questions</p>
+                        <button class="quiz-start-btn" data-questions="10">Start Challenge</button>
+                    </div>
+                    <div class="quiz-option-card">
+                        <h3>💪 Marathon</h3>
+                        <p>20 comprehensive questions</p>
+                        <button class="quiz-start-btn" data-questions="20">Start Marathon</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="quiz-game" class="quiz-screen">
+                <div class="quiz-header">
+                    <div class="quiz-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="quiz-progress-fill"></div>
+                        </div>
+                        <span class="progress-text" id="quiz-progress-text">1 / 5</span>
+                    </div>
+                    <div class="quiz-score-display">
+                        Score: <span id="current-score">0</span>
+                    </div>
+                </div>
+                
+                <div class="quiz-question-card">
+                    <div class="question-word" id="question-word">Loading...</div>
+                    <div class="question-prompt" id="question-prompt">What does this word mean?</div>
+                    
+                    <div class="quiz-options-list" id="quiz-options">
+                        <!-- Options will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="quiz-controls">
+                    <button id="quiz-quit" class="quiz-control-btn quit-btn">Quit Quiz</button>
+                    <button id="quiz-next" class="quiz-control-btn next-btn" style="display: none;">Next Question</button>
+                </div>
+            </div>
+            
+            <div id="quiz-results" class="quiz-screen">
+                <div class="results-container">
+                    <div class="results-header">
+                        <div class="results-icon" id="results-icon">🎉</div>
+                        <h2 id="results-title">Quiz Complete!</h2>
+                        <div class="results-score">
+                            <span id="final-score">0</span> / <span id="total-questions">5</span>
+                        </div>
+                        <div class="results-percentage" id="results-percentage">0%</div>
+                    </div>
+                    
+                    <div class="results-details">
+                        <div class="result-stat">
+                            <span class="result-label">Correct Answers:</span>
+                            <span class="result-value" id="correct-count">0</span>
+                        </div>
+                        <div class="result-stat">
+                            <span class="result-label">Wrong Answers:</span>
+                            <span class="result-value" id="wrong-count">0</span>
+                        </div>
+                        <div class="result-stat">
+                            <span class="result-label">Accuracy:</span>
+                            <span class="result-value" id="accuracy-rate">0%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="results-actions">
+                        <button id="retry-quiz" class="quiz-action-btn primary">Try Again</button>
+                        <button id="new-quiz" class="quiz-action-btn secondary">New Quiz</button>
+                        <button id="quiz-back-to-home" class="quiz-action-btn tertiary">Back to Home</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="flashcards" class="view">
+            <h2>Flashcards (Coming Soon)</h2>
+            <p>Review words as flashcards and save your progress locally.</p>
+            <div id="flashcard-area"></div>
+        </section>
+
+        <section id="add-word" class="view">
+            <h2>Add New Word</h2>
+            <div class="add-word-form card">
+                <form id="word-form">
+                    <div class="form-group">
+                        <label for="new-word">Word *</label>
+                        <input type="text" id="new-word" name="word" required placeholder="Enter English word">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="new-pronunciation">Pronunciation (उच्चारण)</label>
+                        <input type="text" id="new-pronunciation" name="pronunciation" placeholder="e.g., pom-puhs">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="new-hindi-meaning">Hindi Meaning</label>
+                        <input type="text" id="new-hindi-meaning" name="hindiMeaning" placeholder="हिंदी में अर्थ">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="new-english-meaning">English Meaning *</label>
+                        <textarea id="new-english-meaning" name="meaning" required placeholder="Enter English definition"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="new-example">Example</label>
+                        <textarea id="new-example" name="example" placeholder="Usage example"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="new-pos">Part of Speech</label>
+                        <select id="new-pos" name="pos">
+                            <option value="">Select...</option>
+                            <option value="noun">Noun</option>
+                            <option value="verb">Verb</option>
+                            <option value="adjective">Adjective</option>
+                            <option value="adverb">Adverb</option>
+                            <option value="preposition">Preposition</option>
+                            <option value="conjunction">Conjunction</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="new-synonyms">Synonyms (comma separated)</label>
+                        <input type="text" id="new-synonyms" name="synonyms" placeholder="similar, alike, same">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="new-mnemonic">Mnemonic Story</label>
+                        <textarea id="new-mnemonic" name="mnemonic" placeholder="A short story or trick to remember this word"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="nav-btn">Add Word</button>
+                </form>
+            </div>
+            
+            <div id="add-word-success" class="success-message" style="display: none;">
+                <p>✅ Word added successfully! Redirecting to Vocabulary...</p>
+            </div>
+        </section>
+        <!-- Exam PDFs Feature Start -->
+        <section id="exam-pdfs" class="view">
+            <div class="exam-pdfs-header">
+                <button id="back-to-home" class="back-button">
+                    <span class="back-icon">←</span>
+                    <span class="back-text">Back to Home</span>
+                </button>
+                <div class="exam-pdfs-title">
+                    <h2>📚 Exam PDFs</h2>
+                    <p class="exam-pdfs-subtitle">Premium study materials for competitive exams</p>
+                </div>
+            </div>
+            
+            <div class="exam-categories-container">
+                <div class="categories-grid" id="pdf-categories">
+                    <div class="category-card" data-category="math">
+                        <div class="category-icon">📊</div>
+                        <div class="category-content">
+                            <h3>Mathematics</h3>
+                            <p>Quantitative Aptitude & Problem Solving</p>
+                            <div class="category-badge">50+ PDFs</div>
+                        </div>
+                        <div class="category-arrow">→</div>
+                    </div>
+                    
+                    <div class="category-card" data-category="gk">
+                        <div class="category-icon">🌍</div>
+                        <div class="category-content">
+                            <h3>General Knowledge</h3>
+                            <p>Current Affairs & Static GK</p>
+                            <div class="category-badge">75+ PDFs</div>
+                        </div>
+                        <div class="category-arrow">→</div>
+                    </div>
+                    
+                    <div class="category-card" data-category="english">
+                        <div class="category-icon">📝</div>
+                        <div class="category-content">
+                            <h3>English</h3>
+                            <p>Grammar, Comprehension & Vocabulary</p>
+                            <div class="category-badge">40+ PDFs</div>
+                        </div>
+                        <div class="category-arrow">→</div>
+                    </div>
+                    
+                    <div class="category-card" data-category="reasoning">
+                        <div class="category-icon">🧠</div>
+                        <div class="category-content">
+                            <h3>Reasoning</h3>
+                            <p>Logical & Analytical Reasoning</p>
+                            <div class="category-badge">60+ PDFs</div>
+                        </div>
+                        <div class="category-arrow">→</div>
+                    </div>
+                    
+                    <div class="category-card" data-category="vocabulary">
+                        <div class="category-icon">📖</div>
+                        <div class="category-content">
+                            <h3>Vocabulary</h3>
+                            <p>Word Lists & Etymology</p>
+                            <div class="category-badge">30+ PDFs</div>
+                        </div>
+                        <div class="category-arrow">→</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="pdf-list" class="pdf-list-container" style="display: none;">
+                <!-- PDF list will be populated by JavaScript -->
+            </div>
+            
+            <div class="exam-stats">
+                <div class="exam-stat-item">
+                    <div class="exam-stat-number">255+</div>
+                    <div class="exam-stat-label">Total PDFs</div>
+                </div>
+                <div class="exam-stat-item">
+                    <div class="exam-stat-number">15+</div>
+                    <div class="exam-stat-label">Exam Types</div>
+                </div>
+                <div class="exam-stat-item">
+                    <div class="exam-stat-number">100%</div>
+                    <div class="exam-stat-label">Free Access</div>
+                </div>
+                <div class="exam-stat-item">
+                    <div class="exam-stat-number">24/7</div>
+                    <div class="exam-stat-label">Available</div>
+                </div>
+            </div>
+        </section>
+        <!-- Exam PDFs Feature End -->
+    </main>
+
+    <div id="loader" class="loader hidden" aria-hidden="true">
+        <div class="spinner"></div>
+        <div class="loader-text">Loading…</div>
+    </div>
+
+    <div id="toasts" class="toasts" aria-live="polite" aria-atomic="true"></div>
+
+    <footer class="site-footer">
+        <div class="container">
+            <small>Made for learning — Exam Tyari</small>
+        </div>
+    </footer>
+    <div id="detail-modal" class="modal" aria-hidden="true">
+        <div class="modal-backdrop" data-close-modal></div>
+        <div class="modal-content card">
+            <button class="modal-close nav-btn" data-close-modal aria-label="Close">✖</button>
+            <div id="detail-title" class="wotd-word">—</div>
+            <div class="detail-meta">
+                <span id="detail-pos" class="badge"></span>
+                <span id="detail-pron" class="badge"></span>
+            </div>
+            <div id="detail-hi" class="detail-line"></div>
+            <div id="detail-en" class="detail-line"></div>
+            <div id="detail-syn" class="detail-line"></div>
+            <div id="detail-ex" class="detail-block"></div>
+            <div id="detail-mn" class="detail-block"></div>
+            <div id="detail-one" class="detail-block"></div>
+            <div id="detail-uses" class="detail-block"></div>
+        </div>
+    </div>
+
+    <!-- New Beautiful Word Popup -->
+    <div id="word-popup" class="word-popup" aria-hidden="true">
+        <div class="popup-backdrop" data-close-popup></div>
+        <div class="popup-container">
+            <div class="popup-speech-bubble">
+                <div class="popup-word" id="popup-word">—</div>
+            </div>
+            <div class="popup-content">
+                <div class="popup-body">
+                    <h3 class="popup-label">Part of Speech</h3>
+                    <div class="popup-pos" id="popup-pos">—</div>
+                    <h3 class="popup-label">Pronunciation (उच्चारण)</h3>
+                    <div class="popup-pronunciation" id="popup-pronunciation">—</div>
+                    <h3 class="popup-label">Hindi Meaning</h3>
+                    <div class="popup-hindi-meaning" id="popup-hindi-meaning">—</div>
+                    <h3 class="popup-label">English Meaning</h3>
+                    <div class="popup-english-meaning" id="popup-english-meaning">—</div>
+                    <h3 class="popup-label">Synonyms</h3>
+                    <div class="popup-synonyms" id="popup-synonyms">—</div>
+                    <h3 class="popup-label">Example</h3>
+                    <div class="popup-example" id="popup-example">—</div>
+                    <h3 class="popup-label">Mnemonic Story</h3>
+                    <div class="popup-mnemonic" id="popup-mnemonic">—</div>
+                </div>
+            </div>
+            <button class="popup-close" data-close-popup aria-label="Close">✖</button>
+            <button class="popup-favorite" id="popup-favorite" aria-label="Add to Favorites">⭐</button>
+            <button class="popup-delete" id="popup-delete" aria-label="Delete Word">🗑️</button>
+            <button class="popup-edit" id="popup-edit" aria-label="Edit Word" style="display: none;">✎</button>
+        </div>
+    </div>
+    <!-- PDF Modal removed - PDFs now open inline -->
+
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script> <!-- Exam PDFs Feature: PDF.js CDN -->
+    <!-- Organized JavaScript modules -->
+    <script src="js/admin.js" defer></script>
+    <script src="js/settings.js" defer></script>
+    <script src="js/favorites.js" defer></script>
+    <script src="js/word-of-day.js" defer></script>
+    <script src="js/exam-pdfs.js" defer></script>
+    <script src="js/exam-modal.js" defer></script>
+    <script src="js/quiz.js" defer></script>
+    <script src="js/app.js" defer></script>
+    
+    <!-- PWA Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then((registration) => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch((registrationError) => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
+
+
